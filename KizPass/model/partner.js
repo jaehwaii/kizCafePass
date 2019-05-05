@@ -57,4 +57,6 @@ const partnerSchema = mongoose.Schema({
     }
 },{
     versionKey : false
-})
+});
+
+module.exports = mongoose.model('Partner', partnerSchema);
