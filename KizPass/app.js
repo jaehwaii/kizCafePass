@@ -4,8 +4,7 @@ var path = require('path');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
-var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
+
 
 var app = express();
 
@@ -19,8 +18,30 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
+
+
+
+// Setup Mongoose DB
+const mongoose = require("mongoose")
+const dbConfig = require('./config/db.config')
+mongoose.set('useFindAndModify', false);
+mongoose.Promise = global.Promise
+mongoose.connect(dbConfig.url, {
+		useNewUrlParser: true,
+		useFindAndModify: false
+	})
+	.then(() => {
+		console.log("connnect DB success")
+	})
+	.catch(err => {
+		console.log("could not connect to the database.  " + err)
+  })
+
+var indexRouter = require('./routes/index');
+var userRouter = require('./routes/users');
+
 app.use('/', indexRouter);
-app.use('/users', usersRouter);
+app.use('/user', userRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
