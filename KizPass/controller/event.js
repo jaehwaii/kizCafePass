@@ -7,7 +7,6 @@ const Event = require('../model/event');
 exports.event_create = (req, res) => {
     const dateObj = new Date();
     const date = dateObj.getDate()
-    console.log(date)
     const event = new Event({
         _id : new mongoose.Types.ObjectId(),
         title : req.body.title,
