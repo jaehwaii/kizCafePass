@@ -39,9 +39,11 @@ mongoose.connect(dbConfig.url, {
 
 var indexRouter = require('./routes/index');
 var userRouter = require('./routes/users');
+var eventRouter = require('./routes/event');
 
 app.use('/', indexRouter);
 app.use('/user', userRouter);
+app.use('/event', eventRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

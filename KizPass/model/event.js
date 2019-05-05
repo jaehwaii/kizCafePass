@@ -1,6 +1,7 @@
 const mongoose = require('mongoose');
 
 const eventSchema = mongoose.Schema({
+    _id : String,
     title : {
         type : String,
         default : null
