@@ -1,16 +1,20 @@
 const mongoose = require('mongoose');
+const moment =require('moment');
 
 const Event = require('../model/event');
 
 
 exports.event_create = (req, res) => {
+    const dateObj = new Date();
+    const date = dateObj.getDate()
+    console.log(date)
     const event = new Event({
         _id : new mongoose.Types.ObjectId(),
         title : req.body.title,
         thumbnail : req.body.thumbnail,
         ongoing : req.body.ongoing,
         contents : req.body.contents,
-        end_date : req.body.end_date
+        end_date : date
     });
     event.save()
     .then(result => {

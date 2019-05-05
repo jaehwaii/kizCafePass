@@ -1,4 +1,5 @@
 const mongoose = require('mongoose');
+const moment = require('moment');
 
 const eventSchema = mongoose.Schema({
     _id : String,
@@ -19,9 +20,10 @@ const eventSchema = mongoose.Schema({
         default : null
     },
     end_date : {
-        type : Date,
-        expires : 3600
+        type : Number
     }
+},{
+    versionKey : false
 });
 
 module.exports = mongoose.model('Event', eventSchema);
